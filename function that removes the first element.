@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+
+public class main {
+    public static void main(String[] args) {
+        ArrayList<player> playerlist = new ArrayList<player>();
+
+        playerlist.add(new player(1, "Bryan Francisco"));
+        playerlist.add(new player(11, "Matszy"));
+        playerlist.add(new player(8, "Matthew Francisco"));
+
+        System.out.println("before insert:");
+        System.out.println("player at index 1: " + playerlist.get(1));
+
+        removeFirstPlayer(playerlist);
+
+        System.out.println("after insert:");
+        System.out.println("player at index 1: " + playerlist.get(1));
+
+        printList(playerlist);
+    }
+
+    public static void removeFirstPlayer(ArrayList<player> playerList) {
+        if (!playerList.isEmpty()) {
+            playerList.remove(0); // Removes the first element (index 0) from the list
+        }
+    }
+    public static void printList(ArrayList<player> playerList)
+    {
+        for (player player: playerList)
+        {
+            System.out.print(player + ", ");
+        }
+    }
+}
