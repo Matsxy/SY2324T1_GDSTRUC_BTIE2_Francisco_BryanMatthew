@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+
+class Player {
+    int id;
+    String name;
+
+    public Player(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+class MyLinkedList<T> {
+    private Node<T> head;
+    private int size;
+
+    private static class Node<T> {
+        T data;
+        Node<T> next;
+
+        public Node(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public void add(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node<T> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        size++;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        Node<T> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    public void removeFirst() {
+        if (head != null) {
+            head = head.next;
+            size--;
+        }
+    }
+
+    public int size() {
+        return size;
+    }
+}
+
+ class Main {
+    public static void main(String[] args) {
+        MyLinkedList<Player> playerList = new MyLinkedList<>();
+
+        playerList.add(new Player(1, "Bryan Francisco"));
+        playerList.add(new Player(11, "Matszy"));
+        playerList.add(new Player(8, "Matthew Francisco"));
+
+        System.out.println("before removeFirst:");
+        System.out.println("player at index 1: " + playerList.get(1));
+
+        playerList.removeFirst();
+
+        System.out.println("after removeFirst:");
+        System.out.println("player at index 1: " + playerList.get(1));
+
+        printList(playerList);
+    }
+
+    public static void printList(MyLinkedList<Player> playerList) {
+        for (int i = 0; i < playerList.size(); i++) {
+            System.out.print(playerList.get(i) + ", ");
+        }
+    }
+}
