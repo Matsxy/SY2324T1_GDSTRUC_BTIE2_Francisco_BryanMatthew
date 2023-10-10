@@ -1,1 +1,35 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class cardstack {
+    private List<card> stack;
+
+    public cardstack() {
+        stack = new ArrayList<>();
+    }
+
+    public void push(card card) {
+        stack.add(card);
+    }
+
+    public card pop() {
+        if (!isEmpty()) {
+            return stack.remove(stack.size() - 1);
+        }
+        return null;
+    }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    public int size() {
+        return stack.size();
+    }
+
+    public void shuffle() {
+        Collections.shuffle(stack);
+    }
+}
 
